@@ -1,0 +1,106 @@
+@extends('AdminDashboard.layouts.DashInclude')
+@section('DashInclude-section')
+
+<script type="text/javascript">
+  function submit_form(){  
+  var category = document.getElementById('category').value;
+  var name = document.getElementById('name').value;
+  var design_id = document.getElementById('design_id').value;
+  var image = document.getElementById('image').value;
+  // alert(img);
+  if(category == ""){
+    alert("Please Select");
+    return false;
+  }
+  if(name == ""){
+    alert("Please Enter Name");
+    return false;
+  }
+    if(design_id == ""){
+      alert("Please Enter Id");
+      return false;
+    }
+    if(image == ""){
+      alert("Please Select Image");
+      return false;
+    }
+  }
+</script>
+<body class="hold-transition sidebar-mini layout-fixed">
+<div class="wrapper">
+  
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    
+    <!-- /.content-header -->
+
+    <!-- Main content -->
+  
+  <section class="admin_user">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-lg-12 col-md-12">
+          <div class="admin_user_head">
+            <div class="admin_user_head_tag">
+              <h1 class="m-0 text-dark">Design Demo Management</h1>
+            </div>
+            <div class="admin_user_head_cont">
+              <ul>
+                <li><a href="" class="active">Home</a></li>
+                <li>/</li>
+                <li><a href=""></a>Manage Design Demo</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="admin_user_table">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Add New Design Demo</h3>
+            </div>
+          </div>
+          <div class="">
+            <div class="card-body">
+              <form method="POST" enctype="multipart/form-data" id="upload-file" action="{{ url('saveDesignDemo') }}">
+                      <input type = "hidden" name = "_token" value = "<?php echo csrf_token(); ?>">   
+                      <div class="form-group">
+                       <label for="exampleInputEmail1">Category</label>
+                       <select name="category" class="form-control" id="category">
+                        <option selected disabled value="">Select</option>
+                          <option value="responsive">Responsive</option>
+                          <option value="adminpanel">Admin Panel</option>
+                          <option value="logo">Logo</option>
+                          <option value="ecommerce">Ecommerce</option>
+                          <option value="parallax">Parallax</option>
+                        </select>
+                      </div>
+                      <div class="form-group">
+                        <label for="exampleInputEmail1">Name</label>
+                        <input type="text" name="name" class="form-control" id="name" placeholder="Enter Design Demo name">
+                      </div>
+                      <div class="form-group">
+                        <label for="exampleInputEmail1">Design ID</label>
+                        <input type ="text" name="design_id" class="form-control" id="design_id" placeholder="Enter Design_id">
+                      </div>
+                      <div class="form-group">
+                        <label for="exampleInputEmail1">Design Image</label>
+                        <input type="file" name="image" class="form-control" id="image">
+                      </div>
+                     <input class="btn btn-success" onclick="return submit_form()"  type="submit" name="submit" value="Submit"/> 
+                </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+ @endsection

@@ -1,0 +1,50 @@
+Comparision of Live Vs. New Maastrix Website
+
+Key Differences
+
+1. Home Page---Social media links & email ID on the header missing in new site.(done)
+            ---Services section-unsymmetrical design(done)
+            ---Dummy content below "we can Take your business.." section(done)
+            ---testimonial-unsymmetrical design
+            ---can use live site banner pix.
+
+2. About us --- Heavy on contect, need an efficient design to manage the content
+
+3. Services --- Web Design page content missing,(done)
+            --- need to arrange contents paragraph wise & make picture allignment center in internal pages.(done)
+            --- Home button is not working.(done)
+
+4. Portfolio---Projects in 'All' tab are not hyperlinked(done)
+            ---project details pages-key features need to be bulleted.(done)
+            ---some projects are missing in wordpress, core php, phalcon, codeignitor, yii tab 
+               (these project content is availble in live site but picture download error)
+            ---no project in cake php. (content available in live site but picture loading error)
+            ---mouse over content is missing in phalcon & core php project list.
+
+5. Clients   ---client's detailed info page missing (in live site some client's detailed info)(done)
+
+6. Design Demo-- only one design in newsite. other designs loading error in live site
+
+7. Contact us--- form missing many important form fields ffrom live site.(done)
+
+8. Career----All job openings are not updated in newsite(done)
+         --- Job description contents overflowing from textbox.(done)
+
+9. Blog---irrelevant links & categories in left side of page.
+       ---not all blog content uploaded from live page.
+       --- Banner loading error in blog inner pages.
+       ---footer doesn't have in blog links
+       --- is blog response moderated??
+
+10. Privacy policy---footer not updated.(done)
+
+11. Site map--- Not all links are connected to concerned pages.
+
+12. search icon irresponsive in all pages except home page. there only showing search bar but can't search anything.
+
+13. Admin --- Manage blogs-edit error- loading banner edit 
+          --- manage training is missing
+          --- less editing options in portfolio management
+          --- many site cms options missing 
+            
+                          

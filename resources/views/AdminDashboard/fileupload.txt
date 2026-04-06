@@ -1,0 +1,63 @@
+OLD
+
+
+$resume=$request->file('resume');
+
+        $originalName = ($request->fname).'.'.$resume->getClientOriginalExtension();
+        $path=public_path('uploads');
+        $resumePath = $path.'/'.$originalName;
+        $resume->move($path,$originalName);
+        $ApplyForm->resume = $resumePath;
+     
+
+ new successful with new folder
+
+       $resume=$request->file('resume');
+
+        $originalName = ($request->fname).'.'.$resume->getClientOriginalExtension();
+   
+        $resumePath = 'uploads'.'/'.$originalName;
+        $resume->move($resumePath,$originalName);
+        $ApplyForm->resume = $resumePath;
+     
+
+
+breeze Dashboard
+
+     <x-app-layout>
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            {{ __('Dashboard') }}
+        </h2>
+    </x-slot>
+
+    <div class="py-12">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="p-6 bg-white border-b border-gray-200">
+                    You're logged in!
+                </div>
+            </div>
+        </div>
+    </div>
+</x-app-layout>
+
+
+
+
+file download
+//    public function Download(Request $request,$resume){
+    public function getDownload($resume)
+    {
+        //PDF file is stored under project/public/download/info.pdf
+        $file= "uploads/".$resume;
+    
+        $headers = array(
+                  'Content-Type: application/pdf',
+                );
+    
+        return Response::download($resume, 'html.pdf', $headers);
+    }
+    //  return response()->download(public_path('/uploads'.$resume));
+      }
+ 

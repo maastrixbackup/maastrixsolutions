@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<!-- saved from url=(0040)https://jqueryvalidation.org/files/demo/ -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title>jQuery validation plug-in - main demo</title>
+<link rel="stylesheet" href="./jQuery validation plug-in - main demo_files/screen.css">
+<script src="https://jqueryvalidation.org/files/lib/jquery.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.2/jquery.validate.min.js"></script>
+<script>
+
+
+	$().ready(function() {
+
+		$("#signupForm").validate({
+			rules: {
+				fullname: "required",
+				
+			},
+			messages: {
+				fullname: "Please enter your firstname",
+			}
+		});
+	});
+	</script>
+<style>
+	#commentForm {
+		width: 500px;
+	}
+	#commentForm label {
+		width: 250px;
+	}
+	#commentForm label.error, #commentForm input.submit {
+		margin-left: 253px;
+	}
+	#signupForm {
+		width: 670px;
+	}
+	#signupForm label.error {
+		margin-left: 10px;
+		width: auto;
+		display: inline;
+	}
+	#newsletter_topics label.error {
+		display: none;
+		margin-left: 103px;
+	}
+	</style>
+</head>
+<body>
+<div id="main">
+<p>Default submitHandler is set to display an alert into of submitting the form</p>
+<form class="cmxform" id="signupForm" method="get" action="google.com" novalidate="novalidate"> 
+
+	<input type="hidden" name="_token" value="vpIz2Jze6dKK9SAchkw58ztaqTi1a0JCMPsQzKRi">                         
+	<div class="row">
+		<div class="col-lg-6 col-md-6">
+			<div class="contact_sec_right_single">
+				<input type="text" name="fullname" placeholder="Name*" class="form_input">
+			</div>
+		  
+		</div>
+		<div class="col-lg-6 col-md-6">
+			<div class="contact_sec_right_single">
+				<input type="text" name="email" placeholder="Email*" class="form_input">
+			</div>
+		  
+		</div>
+		<div class="col-lg-6 col-md-6">
+		<div class="contact_sec_right_single">
+				<input type="text" name="Pnum" placeholder="Phone No*" class="form_input">
+			</div>  
+		</div>
+		<div class="col-lg-6 col-md-6">
+			<div class="contact_sec_right_single">
+				<input type="text" name="Cname" placeholder="Company Name*" class="form_input">
+			</div>   
+		</div>
+		<div class="col-lg-6 col-md-6">
+			<div class="contact_sec_right_single">
+				<input type="text" name="subject" placeholder="Subject*" class="form_input">
+			</div>   
+		</div>
+		<div class="col-lg-6 col-md-6">
+			<div class="contact_sec_right_single">
+				<input type="text" name="Weblink" placeholder="Website Link*" class="form_input">
+			</div>   
+		</div>
+		 <div class="col-lg-12 col-md-12">
+			<div class="contact_sec_right_single">
+			   <textarea name="msg" id="message" class="form_input" placeholder="Your Messages.." cols="30" rows="5" data-error="Please enter your message"></textarea>     
+			</div> 
+			
+		</div>
+		<div class="col-lg-12 col-md-12">
+			<div class="contact_sec_right_single">
+			
+			  <button type="submit">Send Message<i class="fas fa-arrow-right"></i></button>    
+			</div>
+		</div>
+	</div>
+</form>
+
+</body></html>
