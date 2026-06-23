@@ -219,63 +219,77 @@ class AdminController extends Controller
 
         // ✅ Render Blade view to HTML
         $renderedPayload = view('emails.JobApplyForm', $data)->render();
+        $emails = [
+            'hr@maastrixsolutions.com',
+            'soumya.maastrix@gmail.com'
+        ];
 
-        // ✅ Send as raw payload (text/html or text/plain)
         try {
-            $curl = curl_init();
 
-            $postFields = [
-                'user_name' => $data['fname_data'] . ' ' . $data['lname_data'],
-                'content'    => $renderedPayload,
-                'subject'    => 'New Job Application : ' . $data['fname_data'] . ' ' . $data['lname_data'],
-                'to_email'   => 'hr@maastrixsolutions.com',
-                // 'to_email'   => 'bibhuprasad.maastrix@gmail.com',
-                'from_email' => $data['email_data'],
-            ];
+            foreach ($emails as $email) {
 
-            curl_setopt_array($curl, [
-                CURLOPT_URL => 'https://apicalls.maastrixdemo.com/maastrix/send_email.php',
-                CURLOPT_RETURNTRANSFER => true,
-                CURLOPT_ENCODING => '',
-                CURLOPT_MAXREDIRS => 10,
-                CURLOPT_TIMEOUT => 30,
-                CURLOPT_FOLLOWLOCATION => true,
-                CURLOPT_POST => true,
-                CURLOPT_POSTFIELDS => http_build_query($postFields),
-                CURLOPT_HTTPHEADER => [
-                    'Content-Type: application/x-www-form-urlencoded',
-                ],
-                CURLOPT_SSL_VERIFYHOST => 0,
-                CURLOPT_SSL_VERIFYPEER => 0,
-            ]);
+                $curl = curl_init();
 
-            $response = curl_exec($curl);
-            $err = curl_error($curl);
-            $httpCode = curl_getinfo($curl, CURLINFO_HTTP_CODE);
+                $postFields = [
+                    'user_name' => $data['fname_data'] . ' ' . $data['lname_data'],
+                    'content'    => $renderedPayload,
+                    'subject'    => 'New Job Application : ' . $data['fname_data'] . ' ' . $data['lname_data'],
+                    'to_email'   => $email,
+                    'from_email' => $data['email_data'],
+                ];
 
-            curl_close($curl);
+                curl_setopt_array($curl, [
+                    CURLOPT_URL => 'https://apicalls.maastrixdemo.com/maastrix/send_email.php',
+                    CURLOPT_RETURNTRANSFER => true,
+                    CURLOPT_TIMEOUT => 30,
+                    CURLOPT_FOLLOWLOCATION => true,
+                    CURLOPT_POST => true,
+                    CURLOPT_POSTFIELDS => http_build_query($postFields),
+                    CURLOPT_HTTPHEADER => [
+                        'Content-Type: application/x-www-form-urlencoded',
+                    ],
+                    CURLOPT_SSL_VERIFYHOST => 0,
+                    CURLOPT_SSL_VERIFYPEER => 0,
+                ]);
 
-            // dd(json_decode($response, true));
-            if ($err) {
-                Log::error('cURL error while sending to PHPMailer API: ' . $err);
-                // Return or handle error response
-                // return response()->json(['status' => 'error', 'message' => $err], 500);
-                dd('Error1:', $err);
-            }
+                $response = curl_exec($curl);
+                $err = curl_error($curl);
+                $httpCode = curl_getinfo($curl, CURLINFO_HTTP_CODE);
 
-            if ($httpCode >= 200 && $httpCode < 300) {
-                Log::info('Job application sent successfully.', ['response' => $response]);
-                // Return or handle success response
-                // return response()->json(['status' => 'success', 'response' => $response]);
-                // dd('Success', json_decode($response, true));
-            } else {
-                Log::error('PHPMailer API failed.', ['status' => $httpCode, 'response' => $response]);
-                // Return or handle failure response
-                // return response()->json(['status' => 'error', 'http_code' => $httpCode, 'response' => $response], $httpCode);
-                // dd($httpCode, $response);
+                curl_close($curl);
+
+
+                if ($err) {
+
+                    Log::error('Email API cURL error', [
+                        'email' => $email,
+                        'error' => $err
+                    ]);
+
+                    continue;
+                }
+
+
+                if ($httpCode >= 200 && $httpCode < 300) {
+
+                    Log::info('Email sent successfully', [
+                        'email' => $email,
+                        'response' => $response
+                    ]);
+                } else {
+
+                    Log::error('Email API failed', [
+                        'email' => $email,
+                        'status' => $httpCode,
+                        'response' => $response
+                    ]);
+                }
             }
         } catch (\Exception $e) {
-            Log::error('Exception during API call: ' . $e->getMessage());
+
+            Log::error('Exception during email sending', [
+                'message' => $e->getMessage()
+            ]);
         }
 
         // Mail::send('emails.JobApplyForm', $data, function ($message) use ($data) {

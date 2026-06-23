@@ -160,7 +160,7 @@
                                     </div>
                                     <div class="col-md-6 col-sm-6 jobapply_formbox">
                                         <div class="input number"><label for="phone">Phone Number</label><input
-                                                name="ContactNum" id="phone" placeholder="Phone Number"
+                                                name="ContactNum" id="ContactNum" placeholder="Phone Number"
                                                 class="form_input" type="text" maxlength="10"></div>
                                     </div>
                                 </div>
@@ -169,7 +169,7 @@
                                     <div class="col-md-6 col-sm-6 jobapply_formbox_dob">
                                         <div class="input date"><label for="CandidateDobDay">Date of Birth</label>
                                             <div class="d-fl">
-                                                <input name="DOB" id="state" placeholder="DOB"
+                                                <input name="DOB" id="DOB" placeholder="DOB"
                                                     class="form_input" maxlength="100" type="date">
                                             </div>
                                         </div>
@@ -830,5 +830,55 @@
                     $recaptcha.setAttribute("required", "required");
                 }
             };
+        </script>
+
+        <script>
+            $("#resume").on("change", function() {
+
+                let file = this.files[0];
+
+                if (!file) {
+                    return;
+                }
+
+
+                // Allowed extensions
+                let allowedExtensions = [
+                    "pdf",
+                    "doc",
+                    "docx"
+                ];
+
+
+                let fileName = file.name;
+                let fileExtension = fileName.split('.').pop().toLowerCase();
+
+
+                // Check file type
+                if (!allowedExtensions.includes(fileExtension)) {
+
+                    alert("Only PDF, DOC, DOCX files are allowed");
+
+                    $(this).val("");
+
+                    return false;
+                }
+
+
+                // Check file size (1MB)
+                let maxSize = 1024 * 1024; // 1MB
+
+
+                if (file.size > maxSize) {
+
+                    alert("Resume size must be less than 1MB");
+
+                    $(this).val("");
+
+                    return false;
+                }
+
+
+            });
         </script>
     @endsection

@@ -141,139 +141,306 @@ $(document).ready(function () {
 
 
 $(document).ready(function () {
+
+
+    // Block future DOB and age less than/equal 18
+    let today = new Date();
+
+    today.setFullYear(today.getFullYear() - 18);
+    today.setDate(today.getDate() - 1);
+
+    $("#DOB").attr("max", today.toISOString().split("T")[0]);
+
+    // Age validation
+    $.validator.addMethod("age18plus", function (value, element) {
+
+        let dob = new Date(value);
+        let currentDate = new Date();
+
+        let age = currentDate.getFullYear() - dob.getFullYear();
+
+        let monthDiff = currentDate.getMonth() - dob.getMonth();
+
+        if (
+            monthDiff < 0 ||
+            (monthDiff === 0 && currentDate.getDate() < dob.getDate())
+        ) {
+            age--;
+        }
+
+        return age > 18;
+
+    }, "Candidate must be older than 18 years");
+
+
+
     $("#CandidateApplyForm").validate({
+
         errorClass: "error fail-alert",
         validClass: "valid success-alert",
+
+
         rules: {
+
+
             fname: {
                 required: true,
                 minlength: 3
             },
+
+
             lname: {
                 minlength: 3
             },
+
+
             email: {
                 required: true,
-                email: true,
+                email: true
             },
+
+
             ContactNum: {
+
                 required: true,
                 number: true,
                 minlength: 10,
+                maxlength: 10
 
             },
+
+
             DOB: {
-                required: true
+
+                required: true,
+                age18plus: true
+
             },
+
+
             gender: {
-                required: true,
+
+                required: true
+
             },
+
+
             address: {
-                required: true,
+
+                required: true
 
             },
+
+
             country: {
-                required: true,
+
+                required: true
 
             },
+
+
             state: {
-                required: true,
+
+                required: true
 
             },
+
+
             city: {
-                required: true,
-            },
-            Zip: {
-                required: true,
-            },
-            PrimarySkills: {
-                required: true,
-            },
-            SecondarySkills: {
-                required: true,
-            },
-            experience: {
-                required: true,
-            },
-            CurrentEmployer: {
-                required: true,
+
+                required: true
 
             },
+
+
+            Zip: {
+
+                required: true
+
+            },
+
+
+            PrimarySkills: {
+
+                required: true
+
+            },
+
+
+            SecondarySkills: {
+
+                required: true
+
+            },
+
+
+            experience: {
+
+                required: true
+
+            },
+
+
+            CurrentEmployer: {
+
+                required: true
+
+            },
+
+
             qualification: {
+
                 required: true,
                 maxlength: 255
+
             },
+
+
             resume: {
+
                 required: true,
-                extension: "docx|doc|pdf"
-            },
+                extension: "doc|docx|pdf",
+
+            }
+
+
         },
+
+
         messages: {
+
+
             fname: {
-                required: "Please enter your name",
+
+                required: "Please enter your first name",
                 minlength: "Name should be at least 3 characters"
+
             },
+
+
             lname: {
-                required: "Please enter your name",
+
                 minlength: "Name should be at least 3 characters"
+
             },
+
+
             email: {
+
                 required: "Please enter your email",
-                email: "The email should be in the format: abc@domain.com"
+                email: "Enter valid email address"
+
             },
+
+
             ContactNum: {
+
                 required: "Please enter your mobile number",
-                number: "Please enter a numerical value",
-                min: "Mobile number must be 10 digit"
+                number: "Only numbers allowed",
+                minlength: "Mobile number must be 10 digits",
+                maxlength: "Mobile number must be 10 digits"
+
             },
+
+
             DOB: {
+
                 required: "Please specify your Date of Birth",
+                age18plus: "Candidate must be older than 18 years"
 
             },
+
+
             gender: {
-                required: "Choose your gender.",
+
+                required: "Choose your gender"
 
             },
+
+
             address: {
-                required: "Address is required",
+
+                required: "Address is required"
+
             },
+
+
             country: {
-                required: "Select Your Country",
+
+                required: "Select your country"
+
             },
+
+
             state: {
-                required: "Select Your State",
+
+                required: "Select your state"
+
             },
+
+
             city: {
-                required: "Select Your City",
+
+                required: "Select your city"
+
             },
+
+
             Zip: {
-                required: "this field is required",
+
+                required: "Zip is required"
 
             },
+
+
             PrimarySkills: {
-                required: "This field is required"
+
+                required: "Primary skills required"
+
             },
+
+
             SecondarySkills: {
-                required: "This field is required"
+
+                required: "Secondary skills required"
+
             },
+
+
             experience: {
-                required: "Please Specify your experience"
+
+                required: "Please specify your experience"
+
             },
+
+
             CurrentEmployer: {
-                required: "Please enter your Current Employer",
+
+                required: "Please enter current employer"
 
             },
+
+
             qualification: {
-                required: "the qualifications details are required",
-                maxlength: "maxlengh is upto 255 only"
+
+                required: "Qualification details required",
+                maxlength: "Maximum 255 characters allowed"
+
             },
+
+
             resume: {
-                required: "Please upload your resume(size should not bigger than 1MB.",
-                extension: "select valied input file format"
-            },
+
+                required: "Please upload your resume",
+                extension: "Only doc, docx, pdf files allowed",
+
+            }
 
 
-        },
+        }
+
 
     });
+
+
 });

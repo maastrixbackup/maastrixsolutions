@@ -184,7 +184,7 @@
       'file' => 
       array (
         'driver' => 'file',
-        'path' => 'E:\\maastrix\\storage\\framework/cache/data',
+        'path' => 'E:\\maastrixsolutions\\storage\\framework/cache/data',
       ),
       'memcached' => 
       array (
@@ -355,12 +355,12 @@
       'local' => 
       array (
         'driver' => 'local',
-        'root' => 'E:\\maastrix\\storage\\app',
+        'root' => 'E:\\maastrixsolutions\\storage\\app',
       ),
       'public' => 
       array (
         'driver' => 'local',
-        'root' => 'E:\\maastrix\\storage\\app/public',
+        'root' => 'E:\\maastrixsolutions\\storage\\app/public',
         'url' => 'http://localhost/storage',
         'visibility' => 'public',
       ),
@@ -378,7 +378,7 @@
     ),
     'links' => 
     array (
-      'E:\\maastrix\\public\\storage' => 'E:\\maastrix\\storage\\app/public',
+      'E:\\maastrixsolutions\\public\\storage' => 'E:\\maastrixsolutions\\storage\\app/public',
     ),
   ),
   'hashing' => 
@@ -413,13 +413,13 @@
       'single' => 
       array (
         'driver' => 'single',
-        'path' => 'E:\\maastrix\\storage\\logs/laravel.log',
+        'path' => 'E:\\maastrixsolutions\\storage\\logs/laravel.log',
         'level' => 'debug',
       ),
       'daily' => 
       array (
         'driver' => 'daily',
-        'path' => 'E:\\maastrix\\storage\\logs/laravel.log',
+        'path' => 'E:\\maastrixsolutions\\storage\\logs/laravel.log',
         'level' => 'debug',
         'days' => 14,
       ),
@@ -470,7 +470,7 @@
       ),
       'emergency' => 
       array (
-        'path' => 'E:\\maastrix\\storage\\logs/laravel.log',
+        'path' => 'E:\\maastrixsolutions\\storage\\logs/laravel.log',
       ),
     ),
   ),
@@ -536,7 +536,7 @@
       'theme' => 'default',
       'paths' => 
       array (
-        0 => 'E:\\maastrix\\resources\\views/vendor/mail',
+        0 => 'E:\\maastrixsolutions\\resources\\views/vendor/mail',
       ),
     ),
   ),
@@ -641,7 +641,7 @@
     'lifetime' => '120',
     'expire_on_close' => false,
     'encrypt' => false,
-    'files' => 'E:\\maastrix\\storage\\framework/sessions',
+    'files' => 'E:\\maastrixsolutions\\storage\\framework/sessions',
     'connection' => NULL,
     'table' => 'sessions',
     'store' => NULL,
@@ -661,9 +661,9 @@
   array (
     'paths' => 
     array (
-      0 => 'E:\\maastrix\\resources\\views',
+      0 => 'E:\\maastrixsolutions\\resources\\views',
     ),
-    'compiled' => 'E:\\maastrix\\storage\\framework\\views',
+    'compiled' => 'E:\\maastrixsolutions\\storage\\framework\\views',
   ),
   'dompdf' => 
   array (
@@ -672,10 +672,10 @@
     'convert_entities' => true,
     'options' => 
     array (
-      'font_dir' => 'E:\\maastrix\\storage\\fonts',
-      'font_cache' => 'E:\\maastrix\\storage\\fonts',
+      'font_dir' => 'E:\\maastrixsolutions\\storage\\fonts',
+      'font_cache' => 'E:\\maastrixsolutions\\storage\\fonts',
       'temp_dir' => 'C:\\Users\\USER\\AppData\\Local\\Temp',
-      'chroot' => 'E:\\maastrix',
+      'chroot' => 'E:\\maastrixsolutions',
       'allowed_protocols' => 
       array (
         'file://' => 
