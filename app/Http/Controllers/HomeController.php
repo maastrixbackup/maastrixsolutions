@@ -113,6 +113,8 @@ class HomeController extends Controller
         $port_react =  Portfolio::where('portfolio_for', 'LIKE', '%' . 'react' . '%')->where('status', '=', '1')->get();
         $port_phalcon =  Portfolio::where('portfolio_for', 'LIKE', '%' . 'phalcon' . '%')->where('status', '=', '1')->get();
         $port_laravel = Portfolio::where('portfolio_for', 'LIKE', '%' . 'laravel' . '%')->where('status', '=', '1')->get();
+        $port_next = Portfolio::where('portfolio_for', 'LIKE', '%' . 'nextjs' . '%')->where('status', '=', '1')->get();
+        $port_node = Portfolio::where('portfolio_for', 'LIKE', '%' . 'nodejs' . '%')->where('status', '=', '1')->get();
 
         //  WHERE portfolio_for CONTAINS 'word1 word2 word3'
 
@@ -131,7 +133,7 @@ class HomeController extends Controller
             ->where('status', '=', 1)
             ->get();
         $social_media = DB::table('socials')->get();
-        return view('portfolio', compact('portfolio', 'banner', 'all_testimonial', 'contact_details', 'footr_scrl_img', 'portfolio', 'port_wordpress', 'port_yii', 'port_react', 'port_phalcon', 'social_media', 'port_laravel', 'port_flyer', 'port_logo', 'port_mobile'));
+        return view('portfolio', compact('portfolio', 'banner', 'all_testimonial', 'contact_details', 'footr_scrl_img', 'portfolio', 'port_wordpress', 'port_yii', 'port_react', 'port_phalcon', 'social_media', 'port_laravel', 'port_flyer', 'port_logo', 'port_mobile', 'port_next', 'port_node'));
     }
     public function portfolioView($id)
     {
